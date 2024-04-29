@@ -6,8 +6,18 @@ import { RadioGroup } from '@radix-ui/react-radio-group';
 
 import { cn } from '@/lib/utils';
 
+import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { RadioGroupItem } from './ui/radio-group';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
 import { SparklesCore } from './ui/sparkles';
 
 const fonts = {
@@ -34,11 +44,11 @@ export function NeonSignMaker() {
         <div className="mx-4 space-y-6 md:mx-6 lg:mx-0">
           <div className="space-y-2 text-center">
             {/* START: Sparks */}
-            <div className="w-full bg-slate-950 flex flex-col items-center justify-center overflow-hidden rounded-md">
-              <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
+            <div className="w-full bg-background flex flex-col items-center justify-center overflow-hidden rounded-md">
+              <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center relative z-20">
                 NeonSpark
               </h1>
-              <div className="w-[40rem] h-40 relative">
+              <div className="w-[40rem] relative">
                 {/* Gradients */}
                 <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
                 <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
@@ -56,25 +66,22 @@ export function NeonSignMaker() {
                 />
 
                 {/* Radial Gradient to prevent sharp edges */}
-                <div className="absolute inset-0 w-full h-full bg-slate-950 [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+                <div className="absolute inset-0 w-full h-full bg-background [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
               </div>
             </div>
             {/* END: Sparks */}
 
-            <p className="max-w-[700px] text-gray-500 dark:text-gray-400 md:text-xl">
+            <p className="max-w-[700px] md:text-xl">
               Design your own unique neon sign with our easy-to-use tool. Choose
               your text, font, and size, then see the preview come to life.
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
             <div className="space-y-6">
-              <div className="grid gap-4">
+              <div className="grid gap-4 space-y-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="text">
-                    Neon Text
-                  </label>
-                  <input
-                    className="block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm transition-colors focus:border-gray-500 focus:ring-gray-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:focus:border-gray-500"
+                  <Input
+                    className="w-full h-14 text-lg"
                     id="text"
                     placeholder="Enter your text"
                     type="text"
@@ -82,24 +89,29 @@ export function NeonSignMaker() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="font">
-                    Font
-                  </label>
-                  <select
-                    className="block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm transition-colors focus:border-gray-500 focus:ring-gray-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:focus:border-gray-500"
-                    onChange={(e) => setFont(e.target.value)}
-                    id="font"
-                  >
-                    {Object.entries(fonts).map(([key, value]) => (
-                      <option key={key} value={value}>
-                        {key.charAt(0).toUpperCase() + key.slice(1)}
-                      </option>
-                    ))}
-                  </select>
+                  <Select onValueChange={(val) => setFont(val)}>
+                    <SelectTrigger
+                      defaultValue={font}
+                      className="h-14 w-full text-lg"
+                    >
+                      <SelectValue placeholder="Select a font" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Fonts</SelectLabel>
+                        {Object.entries(fonts).map(([key, value]) => (
+                          <SelectItem value={value} key={key}>
+                            <span className={cn(value)}>
+                              {key.charAt(0).toUpperCase() + key.slice(1)}
+                            </span>
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
               <div className="space-y-2">
-                <p className="text-sm font-medium">Size</p>
                 <div className="flex items-center space-x-4">
                   <RadioGroup
                     defaultValue={size}
@@ -111,7 +123,7 @@ export function NeonSignMaker() {
                     {Object.entries(sizes).map(([key, value]) => (
                       <div key={key} className="flex items-center space-x-2">
                         <RadioGroupItem value={value} id={`size-${key}`} />
-                        <Label htmlFor={`size-${key}`}>
+                        <Label htmlFor={`size-${key}`} className="text-lg">
                           {key.charAt(0).toUpperCase() + key.slice(1)}
                         </Label>
                       </div>
