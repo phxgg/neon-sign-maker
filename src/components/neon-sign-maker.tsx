@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { RadioGroup } from '@radix-ui/react-radio-group';
 
+import { siteConfig } from '@/config/siteConfig';
 import { cn } from '@/lib/utils';
 
 import { Input } from './ui/input';
@@ -20,22 +21,9 @@ import {
 } from './ui/select';
 import { SparklesCore } from './ui/sparkles';
 
-const fonts = {
-  capriola: 'font-capriola',
-  adventPro: 'font-advent-pro',
-  dancingScript: 'font-dancing-script',
-};
-
-const sizes = {
-  small: 'text-3xl',
-  medium: 'text-4xl',
-  large: 'text-5xl',
-  xlarge: 'text-6xl',
-};
-
 export function NeonSignMaker() {
-  const [font, setFont] = useState(fonts.capriola);
-  const [size, setSize] = useState(sizes.medium);
+  const [font, setFont] = useState(siteConfig.fonts.capriola);
+  const [size, setSize] = useState(siteConfig.sizes.medium);
   const [text, setText] = useState('Your Text');
 
   return (
@@ -99,13 +87,15 @@ export function NeonSignMaker() {
                     <SelectContent>
                       <SelectGroup>
                         <SelectLabel>Fonts</SelectLabel>
-                        {Object.entries(fonts).map(([key, value]) => (
-                          <SelectItem value={value} key={key}>
-                            <span className={cn(value)}>
-                              {key.charAt(0).toUpperCase() + key.slice(1)}
-                            </span>
-                          </SelectItem>
-                        ))}
+                        {Object.entries(siteConfig.fonts).map(
+                          ([key, value]) => (
+                            <SelectItem value={value} key={key}>
+                              <span className={cn(value)}>
+                                {key.charAt(0).toUpperCase() + key.slice(1)}
+                              </span>
+                            </SelectItem>
+                          )
+                        )}
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -120,7 +110,7 @@ export function NeonSignMaker() {
                       setSize(val);
                     }}
                   >
-                    {Object.entries(sizes).map(([key, value]) => (
+                    {Object.entries(siteConfig.sizes).map(([key, value]) => (
                       <div key={key} className="flex items-center space-x-2">
                         <RadioGroupItem value={value} id={`size-${key}`} />
                         <Label htmlFor={`size-${key}`} className="text-lg">
