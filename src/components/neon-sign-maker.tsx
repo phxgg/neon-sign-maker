@@ -2,10 +2,19 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { RadioGroup } from '@radix-ui/react-radio-group';
 
 import { cn } from '@/lib/utils';
 
+import { Label } from './ui/label';
+import { RadioGroupItem } from './ui/radio-group';
 import { SparklesCore } from './ui/sparkles';
+
+const fonts = {
+  capriola: 'font-capriola',
+  adventPro: 'font-advent-pro',
+  dancingScript: 'font-dancing-script',
+};
 
 const sizes = {
   small: 'text-3xl',
@@ -15,7 +24,7 @@ const sizes = {
 };
 
 export function NeonSignMaker() {
-  const [font, setFont] = useState('neon');
+  const [font, setFont] = useState(fonts.capriola);
   const [size, setSize] = useState(sizes.medium);
   const [text, setText] = useState('Your Text');
 
@@ -81,35 +90,33 @@ export function NeonSignMaker() {
                     onChange={(e) => setFont(e.target.value)}
                     id="font"
                   >
-                    <option value="neon">Neon</option>
-                    <option value="cursive">Cursive</option>
-                    <option value="retro">Retro</option>
-                    <option value="modern">Modern</option>
+                    {Object.entries(fonts).map(([key, value]) => (
+                      <option key={key} value={value}>
+                        {key.charAt(0).toUpperCase() + key.slice(1)}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
               <div className="space-y-2">
                 <p className="text-sm font-medium">Size</p>
                 <div className="flex items-center space-x-4">
-                  {Object.entries(sizes).map(([key, value]) => (
-                    <label
-                      key={key}
-                      className="flex cursor-pointer items-center space-x-2"
-                      htmlFor={`size-${key}`}
-                    >
-                      <input
-                        className="h-4 w-4 rounded-full border-gray-300 bg-white text-gray-500 transition-colors focus:ring-2 focus:ring-gray-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-500 dark:focus:ring-gray-500"
-                        id={`size-${key}`}
-                        name="size"
-                        type="radio"
-                        value={key}
-                        onChange={() => setSize(value)}
-                      />
-                      <span className="text-sm">
-                        {key.charAt(0).toUpperCase() + key.slice(1)}
-                      </span>
-                    </label>
-                  ))}
+                  <RadioGroup
+                    defaultValue={size}
+                    className="flex flex-row items-center space-x-4"
+                    onValueChange={(val) => {
+                      setSize(val);
+                    }}
+                  >
+                    {Object.entries(sizes).map(([key, value]) => (
+                      <div key={key} className="flex items-center space-x-2">
+                        <RadioGroupItem value={value} id={`size-${key}`} />
+                        <Label htmlFor={`size-${key}`}>
+                          {key.charAt(0).toUpperCase() + key.slice(1)}
+                        </Label>
+                      </div>
+                    ))}
+                  </RadioGroup>
                 </div>
               </div>
               {/* <button
@@ -132,8 +139,9 @@ export function NeonSignMaker() {
 
                 <div
                   className={cn(
-                    'absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 transform font-bold text-white animate-glow',
-                    size
+                    'absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white animate-glow',
+                    size,
+                    font
                   )}
                 >
                   {text || 'Your Text'}

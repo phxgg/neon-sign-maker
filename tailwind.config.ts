@@ -17,6 +17,11 @@ const config = {
         '2xl': '1400px',
       },
     },
+    fontFamily: {
+      capriola: 'var(--font-capriola)',
+      'advent-pro': 'var(--font-advent-pro)',
+      'dancing-script': 'var(--font-dancing-script)',
+    },
     extend: {
       dropShadow: {
         glow: [
