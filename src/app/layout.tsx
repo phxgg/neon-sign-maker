@@ -3,9 +3,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 import { siteConfig } from '@/config/siteConfig';
+import { adventPro, capriola, dancingScript, fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
-
-import { adventPro, capriola, dancingScript, fontSans } from './fonts';
 
 export const metadata: Metadata = {
   title: siteConfig.title,
