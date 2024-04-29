@@ -142,7 +142,7 @@ export function NeonSignMaker() {
               <div className="relative w-full max-w-[500px]">
                 <Image
                   alt="Neon sign preview"
-                  className="aspect-square rounded-lg object-fill"
+                  className="aspect-square rounded-lg object-fill opacity-70"
                   height={500}
                   width={500}
                   quality={100}
