@@ -113,7 +113,7 @@ export function NeonSignMaker() {
                     {Object.entries(siteConfig.sizes).map(([key, value]) => (
                       <div key={key} className="flex items-center space-x-2">
                         <RadioGroupItem value={value} id={`size-${key}`} />
-                        <Label htmlFor={`size-${key}`} className="text-lg">
+                        <Label htmlFor={`size-${key}`} className="md:text-base">
                           {key.charAt(0).toUpperCase() + key.slice(1)}
                         </Label>
                       </div>
