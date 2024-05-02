@@ -116,7 +116,7 @@ export function NeonSignMaker() {
 
                 <div
                   className={cn(
-                    'absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white animate-glow',
+                    'absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white animate-glow-green',
                     size,
                     font
                   )}

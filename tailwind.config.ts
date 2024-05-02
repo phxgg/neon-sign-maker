@@ -78,7 +78,7 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        glow: {
+        'glow-red': {
           '0%, 100%': {
             textShadow:
               '0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff4000',
@@ -87,11 +87,31 @@ const config = {
             textShadow: '0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000',
           },
         },
+        'glow-green': {
+          '0%, 100%': {
+            textShadow:
+              '0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00',
+          },
+          '50%': {
+            textShadow: '0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00',
+          },
+        },
+        'glow-blue': {
+          '0%, 100%': {
+            textShadow:
+              '0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff, 0 0 40px #0000ff',
+          },
+          '50%': {
+            textShadow: '0 0 20px #0000ff, 0 0 30px #0000ff, 0 0 40px #0000ff',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        glow: 'glow 2s ease-in-out infinite',
+        'glow-red': 'glow-red 2s ease-in-out infinite',
+        'glow-green': 'glow-green 2s ease-in-out infinite',
+        'glow-blue': 'glow-blue 2s ease-in-out infinite',
       },
     },
   },
