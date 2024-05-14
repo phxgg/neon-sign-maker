@@ -8,7 +8,6 @@ import { siteConfig } from '@/config/siteConfig';
 import { cn } from '@/lib/utils';
 
 import { Heading as OriginalHeading } from './heading';
-import { TextGradientGenerator } from './text-gradient-generator';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { RadioGroupItem } from './ui/radio-group';

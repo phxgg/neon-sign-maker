@@ -1,3 +1,5 @@
+'use client';
+
 import { siteConfig } from '@/config/siteConfig';
 
 import { SparklesCore } from './ui/sparkles';
