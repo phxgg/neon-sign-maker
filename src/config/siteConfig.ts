@@ -12,4 +12,9 @@ export const siteConfig = {
     large: 'text-5xl',
     xlarge: 'text-6xl',
   },
+  colors: {
+    red: 'animate-glow-red',
+    green: 'animate-glow-green',
+    blue: 'animate-glow-blue',
+  },
 };

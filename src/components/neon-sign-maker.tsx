@@ -8,6 +8,7 @@ import { siteConfig } from '@/config/siteConfig';
 import { cn } from '@/lib/utils';
 
 import { Heading as OriginalHeading } from './heading';
+import { TextGradientGenerator } from './text-gradient-generator';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { RadioGroupItem } from './ui/radio-group';
@@ -26,6 +27,7 @@ const Heading = memo(OriginalHeading);
 export function NeonSignMaker() {
   const [font, setFont] = useState(siteConfig.fonts.capriola);
   const [size, setSize] = useState(siteConfig.sizes.medium);
+  const [color, setColor] = useState(siteConfig.colors.green);
   const [text, setText] = useState('Your Text');
 
   return (
@@ -96,18 +98,34 @@ export function NeonSignMaker() {
                   </RadioGroup>
                 </div>
               </div>
-              {/* <button
-                className="w-full rounded-md bg-gray-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus:ring-gray-500"
-                type="submit"
-              >
-                Preview Neon Sign
-              </button> */}
+              <div className="space-y-2">
+                <Label className="text-base">Color</Label>
+                <RadioGroup
+                  defaultValue={color}
+                  className="flex flex-row items-center space-x-4"
+                  onValueChange={(val) => {
+                    setColor(val);
+                  }}
+                >
+                  {Object.entries(siteConfig.colors).map(([key, value]) => (
+                    <div key={key} className="flex items-center space-x-2">
+                      <RadioGroupItem value={value} id={`color-${key}`} />
+                      <Label
+                        htmlFor={`color-${key}`}
+                        className={cn('md:text-base', value)}
+                      >
+                        {key.charAt(0).toUpperCase() + key.slice(1)}
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </div>
             </div>
             <div className="flex items-center justify-center">
               <div className="relative w-full max-w-[500px]">
                 <Image
                   alt="Neon sign preview"
-                  className="aspect-square rounded-lg object-fill opacity-70"
+                  className="aspect-square rounded-lg object-fill opacity-80"
                   height={500}
                   width={500}
                   quality={100}
@@ -116,7 +134,9 @@ export function NeonSignMaker() {
 
                 <div
                   className={cn(
-                    'absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white animate-glow-green',
+                    'absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white',
+                    //'p-4 rounded-lg border-2',
+                    color,
                     size,
                     font
                   )}
