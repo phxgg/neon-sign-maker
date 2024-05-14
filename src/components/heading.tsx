@@ -7,7 +7,7 @@ import { SparklesCore } from './ui/sparkles';
 export function Heading() {
   return (
     <div className="w-full bg-background flex flex-col items-center justify-center overflow-hidden rounded-md">
-      <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center relative z-20">
+      <h1 className="md:text-6xl text-3xl lg:text-7xl font-bold text-center relative z-20">
         {siteConfig.title}
       </h1>
       <div className="w-[40rem] relative">
