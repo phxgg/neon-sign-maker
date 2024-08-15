@@ -2,7 +2,6 @@
 
 import { memo, useState } from 'react';
 import Image from 'next/image';
-import { RadioGroup } from '@radix-ui/react-radio-group';
 
 import { siteConfig } from '@/config/siteConfig';
 import { cn } from '@/lib/utils';
@@ -10,7 +9,7 @@ import { cn } from '@/lib/utils';
 import { Heading as OriginalHeading } from './heading';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { RadioGroupItem } from './ui/radio-group';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import {
   Select,
   SelectContent,
